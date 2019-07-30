@@ -22,7 +22,8 @@ menu_settings:
   # 默认: true
   move_inventory: true
   # 菜单更新时间(tick)
-  # 每毫秒更新一次菜单,更新菜单的同时,各个物品id,name,lore等都要更新
+  # 每多少tick更新一次菜单
+  # 可删除
   update_tick: 20
 
 # 命令格式
@@ -40,8 +41,8 @@ menu_settings:
 # 'close' 关闭当前菜单
 # 'back' 返回上一个菜单
 # 'js: xxx' 以JavaScript执行xxx代码
-# 'page: xxx:+x' 给xxx序列组转到下x页
-# 'page: xxx:-x' 给xxx序列组转到上x页
+# 'page: +x' 给xxx序列组转到下x页
+# 'page: -x' 给xxx序列组转到上x页
 
 
 # 带有显示优先级的配置
@@ -109,7 +110,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         # 左键点击执行
@@ -131,7 +132,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         # 中键点击执行
@@ -142,7 +143,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         # shift+左键点击执行
@@ -153,7 +154,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         # shift+右键点击执行
@@ -164,7 +165,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         # 对物品按丢弃键(q)执行
@@ -175,7 +176,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         # 对物品按ctrl+丢弃键(扔掉全部)执行
@@ -186,7 +187,7 @@ item1:
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
           # 满足条件执行的命令
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
     # 条件2
@@ -209,35 +210,35 @@ item1:
           requirement: '%placeholder% == 233 || %placeholder% != 0'
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         right:
           requirement: '%placeholder% == 233 || %placeholder% != 0'
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         middle:
           requirement: '%placeholder% == 233 || %placeholder% != 0'
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         shift_left:
           requirement: '%placeholder% == 233 || %placeholder% != 0'
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
         shift_right:
           requirement: '%placeholder% == 233 || %placeholder% != 0'
           deny_commands:
             - 'msg: &c命令执行失败,没有满足执行命令的要求'
-          command:
+          commands:
             - 'msg: &a执行成功,关闭菜单'
             - 'close'
 
@@ -253,15 +254,39 @@ full:
 
 # 带排序的物品设置
 player:
-  slot: [10-15, 20-25, 30]
+  slot: [11, 12, 13, 14, 15]
   # 自动排列模式(可不填,具体见下方)
+  # 如果检测到就按照排序物品读取
   sorter:
     # 排列的数据:
     value: '%player_money%'
-    # 必填，组名
-    group: 'list1'
     # up顺序、down倒序
     order: 'up'
+    # 翻页按钮设置
+    page_tuning:
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      name: '&e翻页 player'
+      slot: 40
+      lore:
+        - '左键翻到上一页'
+        - '右键翻到下一页'
+        - '中键翻到特定页'
+      commands:
+        left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          commands:
+            - 'msg: &a执行成功,对 player 组的自动排版翻到下一页'
+            - 'page: +1'
+        right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          commands:
+            - 'msg: &a执行成功,对 player 组的自动排版翻到上一页'
+            - 'page: -1'
   items:
     - id: '%placeholder%'
       amount: '%placeholder%'
@@ -273,43 +298,10 @@ player:
     - id: '%placeholder%'
       amount: '%placeholder%'
       # 序列第4、5、6格显示的物品
-      slot: [4, 5, 6]
-      name: 'Item%placeholder%'
+      slot: [4, 5]
+      name: 'Item %placeholder%'
       lore:
         - '%placeholder%'
-# 排序列表的翻页按钮设置
-page:
-  id: '%placeholder%'
-  amount: '%placeholder%'
-  name: '&e翻页 player'
-  slot: 40
-  group: 'list1'
-  lore:
-    - '左键翻到上一页'
-    - '右键翻到下一页'
-    - '中键翻到特定页'
-  commands:
-    left:
-      requirement: '%placeholder% == 233 || %placeholder% != 0'
-      deny_commands:
-        - 'msg: &c命令执行失败,没有满足执行命令的要求'
-      command:
-        - 'msg: &a执行成功,对 player 组的自动排版翻到下一页'
-        - 'page: player,+1'
-    right:
-      requirement: '%placeholder% == 233 || %placeholder% != 0'
-      deny_commands:
-        - 'msg: &c命令执行失败,没有满足执行命令的要求'
-      command:
-        - 'msg: &a执行成功,对 player 组的自动排版翻到上一页'
-        - 'page: player,-1'
-    middle:
-      requirement: '%placeholder% == 233 || %placeholder% != 0'
-      deny_commands:
-        - 'msg: &c命令执行失败,没有满足执行命令的要求'
-      command:
-        - 'msg: &a执行成功,对 player 组的自动排版翻到 %placeholder% 一页'
-        - 'page: player,%placeholder%'
 
 
 # 普通物品设置
@@ -323,14 +315,14 @@ item2:
       requirement: '%placeholder% == 233 || %placeholder% != 0'
       deny_commands:
         - 'msg: &c命令执行失败,没有满足执行命令的要求'
-      command:
+      commands:
         - 'msg: &a执行成功,关闭菜单'
         - 'close'
     right:
       requirement: '%placeholder% == 233 || %placeholder% != 0'
       deny_commands:
         - 'msg: &c命令执行失败,没有满足执行命令的要求'
-      command:
+      commands:
         - 'msg: &a执行成功,关闭菜单'
         - 'close'
 
@@ -339,7 +331,24 @@ item2:
 item3:
   # 更新到下一个物品的间隔
   # 单位是tick，20tick=1s
+  # 如果检测到就开启动态
   update_tick: 40
+  # 命令
+  commands:
+    left:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      commands:
+        - 'msg: &a执行成功,关闭菜单'
+        - 'close'
+    right:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      commands:
+        - 'msg: &a执行成功,关闭菜单'
+        - 'close'
   # 物品设置
   items:
     # 显示需求，没有达到需求就不会显示这个物品，可不填

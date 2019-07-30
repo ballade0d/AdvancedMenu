@@ -1,0 +1,358 @@
+# 菜单设置
+menu_settings:
+  title: 'Menu'
+  # 要求与 TabooMenu 一样,突破 6 行限制
+  rows: 6
+  # 用于打开菜单的命令，如果没有此选项，只能使用/menu open <menu>
+  commands:
+    - 'menus'
+    - 'HMenus'
+  # 满足以下条件才能打开菜单，可删去
+  open_requirement: '%placeholder% == 233 && Player.hasPermission("menu.open.xx")'
+  # 不满足条件时执行命令
+  deny_commands:
+    - 'msg: 你不能打开菜单'
+  # 打开菜单时执行的命令
+  open_menu_commands:
+    - 'msg: &eYou oapened menu'
+  # 关闭菜单时执行的命令
+  close_menu_commands:
+    - 'msg: &eYou closed menu'
+  # 是否允许在打开菜单时操作背包物品
+  # 默认: true
+  move_inventory: true
+  # 菜单更新时间(tick)
+  # 每毫秒更新一次菜单,更新菜单的同时,各个物品id,name,lore等都要更新
+  update_tick: 20
+
+# 命令格式
+# 'console: xxx' 在后台执行xxx命令
+# 'player: xxx' 让玩家执行xxx命令
+# 'op: xxx' 让玩家以op权限执行xxx命令
+# 'connect: xxx' 让玩家跳转到xxx子服
+# 'msg: xxx' 给玩家发送xxx信息
+# 'delay: xxx' 延迟xxx秒后继续执行
+# 'broadcast: xxx' 公告xxx信息
+# 'sound: 音效类型-音量-音调' 给玩家播放音效
+# 'sound-all: 音效类型-音量-音调' 给所有玩家播放音效
+# 'open: xxx' 打开xxx菜单
+# 'force_open: xxx' 强制打开xxx菜单
+# 'close' 关闭当前菜单
+# 'back' 返回上一个菜单
+# 'js: xxx' 以JavaScript执行xxx代码
+# 'page: xxx:+x' 给xxx序列组转到下x页
+# 'page: xxx:-x' 给xxx序列组转到上x页
+
+
+# 带有显示优先级的配置
+item1:
+  # 如果检测到就开启优先级显示模式，默认优先级从上往下
+  show_requirement:
+    # 条件1
+    - condition: '%placeholder% == 233 || %placeholder% != 0'
+      # 优先级设置
+      priority: 1
+      # 物品ID,格式为 x:x ,同时支持PAPI变量，如果解析失败，物品将不显示
+      #
+      # HeadDatabase头颅格式：
+      # 'hdb-xxxx'
+      #
+      # 染色皮革格式：
+      # 'color:物品类型:R,G,B'
+      # 'color:物品类型:#十六进制颜色'
+      #
+      # 旗帜格式：
+      # 'banner:旗帜颜色,旗帜图标;旗帜颜色,旗帜图标'
+      #
+      # 刷怪蛋格式：
+      # 'egg:刷怪蛋类型'
+      #
+      # 药水格式：
+      # 'potion:物品ID:效果1;等级1;时间1, 效果2;等级2;时间2'
+      # 效果可无限添加，用逗号加空格隔开
+      id: '%placeholder%'
+      # 物品数量，支持PAPI变量,如果解析失败,物品将默认显示为1
+      # 默认值 1
+      amount: '%placeholder%'
+      # 同时显示在1,2,3格的物品,
+      slot: [1, 2, 3]
+      # 需要支持PAPI变量
+      name: 'Item %placeholder%'
+      # 需要支持PAPI变量
+      lore:
+        - '%placeholder%'
+        - '左键关闭'
+        - '右键关闭'
+        - '中键关闭'
+        - 'Shift+左键关闭'
+        - 'Shift+右键关闭'
+      # 物品属性，默认所有关闭
+      flag:
+        - 'HIDE_ENCHANTS'
+        - 'HIDE_ATTRIBUTES'
+        - 'HIDE_UNBREAKABLE'
+        - 'HIDE_DESTROYS'
+        - 'HIDE_PLACED_ON'
+        - 'HIDE_POTION_EFFECTS'
+      # 物品附魔
+      # 格式：
+      # 类型:等级
+      ench:
+        - 'KNOCKBACK:1'
+      commands:
+        # 点击所有键执行
+        # 如果检测到all，那么忽略其他点击条件
+        all:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # 左键点击执行
+        left:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # 右键点击执行
+        right:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # 中键点击执行
+        middle:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # shift+左键点击执行
+        shift_left:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # shift+右键点击执行
+        shift_right:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # 对物品按丢弃键(q)执行
+        drop:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        # 对物品按ctrl+丢弃键(扔掉全部)执行
+        drop_all:
+          # 所需的条件
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          # 条件不满足执行的命令
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          # 满足条件执行的命令
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+    # 条件2
+    - condition: '%placeholder% == 111 || %placeholder% != 0'
+      # 优先级设置
+      priority: 2
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      slot: [1, 2, 3]
+      name: 'Item%placeholder%'
+      lore:
+        - '%placeholder%'
+        - '左键关闭'
+        - '右键关闭'
+        - '中键关闭'
+        - 'Shift+左键关闭'
+        - 'Shift+右键关闭'
+      commands:
+        left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        middle:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        shift_left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+        shift_right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &c命令执行失败,没有满足执行命令的要求'
+          command:
+            - 'msg: &a执行成功,关闭菜单'
+            - 'close'
+
+
+full:
+  # 填充所有空格子
+  slot: all
+  amount: 1
+  id: '%placeholder%'
+  lore:
+    - 'xx'
+
+
+# 带排序的物品设置
+player:
+  slot: [10-15, 20-25, 30]
+  # 自动排列模式(可不填,具体见下方)
+  sorter:
+    # 排列的数据:
+    value: '%player_money%'
+    # 必填，组名
+    group: 'list1'
+    # up顺序、down倒序
+    order: 'up'
+  items:
+    - id: '%placeholder%'
+      amount: '%placeholder%'
+      # 序列第1、2、3格显示的物品
+      slot: [1, 2, 3]
+      name: 'Item %placeholder%'
+      lore:
+        - '%placeholder%'
+    - id: '%placeholder%'
+      amount: '%placeholder%'
+      # 序列第4、5、6格显示的物品
+      slot: [4, 5, 6]
+      name: 'Item%placeholder%'
+      lore:
+        - '%placeholder%'
+# 排序列表的翻页按钮设置
+page:
+  id: '%placeholder%'
+  amount: '%placeholder%'
+  name: '&e翻页 player'
+  slot: 40
+  group: 'list1'
+  lore:
+    - '左键翻到上一页'
+    - '右键翻到下一页'
+    - '中键翻到特定页'
+  commands:
+    left:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      command:
+        - 'msg: &a执行成功,对 player 组的自动排版翻到下一页'
+        - 'page: player,+1'
+    right:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      command:
+        - 'msg: &a执行成功,对 player 组的自动排版翻到上一页'
+        - 'page: player,-1'
+    middle:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      command:
+        - 'msg: &a执行成功,对 player 组的自动排版翻到 %placeholder% 一页'
+        - 'page: player,%placeholder%'
+
+
+# 普通物品设置
+item2:
+  id: '%placeholder%'
+  amount: '%placeholder%'
+  slot: [1, 2, 3]
+  name: 'Item%placeholder%'
+  commands:
+    left:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      command:
+        - 'msg: &a执行成功,关闭菜单'
+        - 'close'
+    right:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &c命令执行失败,没有满足执行命令的要求'
+      command:
+        - 'msg: &a执行成功,关闭菜单'
+        - 'close'
+
+
+# 动态物品设置
+item3:
+  # 更新到下一个物品的间隔
+  # 单位是tick，20tick=1s
+  update_tick: 40
+  # 物品设置
+  items:
+    # 显示需求，没有达到需求就不会显示这个物品，可不填
+    - requirement: '%placeholder% == 233 || %placeholder% != 0'
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      name: '&e翻页 player'
+      group: 'menulist'
+      lore:
+        - 'abc'
+    - id: '%placeholder%'
+      amount: '%placeholder%'
+      name: '&e翻页 player'
+      group: 'menulist'
+      lore:
+        - 'def'

@@ -1,0 +1,280 @@
+menu_settings:
+  title: 'Menu'
+  # CAN BE MORE THAN 6
+  rows: 6
+  # Cmd for opening this menu
+  commands:
+    - 'menus'
+    - 'HMenus'
+  open_requirement: '%placeholder% == 233 && Player.hasPermission("menu.open.xx")'
+  deny_commands:
+    - 'msg: 你不能打开菜单'
+  # Cmd to execute when opening the menu
+  open_menu_commands:
+    - 'msg: &eYou oapened menu'
+  # Cmd to execute when closing the menu
+  close_menu_commands:
+    - 'msg: &eYou closed menu'
+  # Whether to allow the interaction of player's inventory items when opening the menu
+  move_inventory: true
+  # Menu update interval
+  update_tick: 20
+
+# 'console: xxx' Execute command xxx in console
+# 'player: xxx' Execute command xxx
+# 'op: xxx' Execute command xxx with op perm
+# 'connect: xxx' Connect to xxx server (BC only)
+# 'msg: xxx' Send xxx to player
+# 'delay: xxx' Execute a command after xxx ticks
+# 'broadcast: xxx' Broadcast xxx
+# 'sound: SoundType-Volume-Tone' Play sound for the player
+# 'sound-all: SoundType-Volume-Tone' Play sound for all players
+# 'open: xxx' Open menu xxx
+# 'force_open: xxx' Force open menu xxx
+# 'close' Close the current meny
+# 'back' Back to the Previous menu
+# 'js: xxx' Execute on JavaScript
+# 'page: +x' Page down
+# 'page: -x' Page up
+
+
+item1:
+  show_requirement:
+    - condition: '%placeholder% == 233 || %placeholder% != 0'
+      priority: 1
+      # ID:Data
+      #
+      # HeadDatabase：
+      # 'hdb-xxxx'
+      #
+      # Colored Leather
+      # 'color:Material:R,G,B'
+      # 'color:Material:#Hexadecimal color code'
+      #
+      # Banner：
+      # 'banner:Color1,Icon1;Color2,Icon2'
+      #
+      # Egg：
+      # 'egg:Egg type'
+      #
+      # Potion：
+      # 'potion:Material:EffectType;Level;Time, EffectType;Level;Time'
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      slot: [1, 2, 3]
+      name: 'Item %placeholder%'
+      lore:
+        - a
+        - b
+      # Item flags
+      flag:
+        - 'HIDE_ENCHANTS'
+        - 'HIDE_ATTRIBUTES'
+        - 'HIDE_UNBREAKABLE'
+        - 'HIDE_DESTROYS'
+        - 'HIDE_PLACED_ON'
+        - 'HIDE_POTION_EFFECTS'
+      # Enchantment:Level
+      ench:
+        - 'KNOCKBACK:1'
+      commands:
+        all:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Left click
+        left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Right click
+        right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Middle click
+        middle:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Shift+Left
+        shift_left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Shift+Right
+        shift_right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Q
+        drop:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        # Ctrl+Q
+        drop_all:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+    - condition: '%placeholder% == 111 || %placeholder% != 0'
+      priority: 2
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      slot: [1, 2, 3]
+      name: 'Item%placeholder%'
+      lore: []
+      commands:
+        left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        middle:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        shift_left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+        shift_right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cNo enough power!'
+          commands:
+            - 'close'
+
+
+full:
+  # All empty slots
+  slot: all
+  amount: 1
+  id: '%placeholder%'
+  lore:
+    - 'xx'
+
+
+# Auto sort
+player:
+  slot: [11, 12, 13, 14, 15]
+  sorter:
+    # The plugin will sort the player according to this value.
+    value: '%player_money%'
+    # down: Reverse order
+    order: 'up'
+    page_tuning:
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      name: '&ePage tuning'
+      slot: 40
+      lore: []
+      commands:
+        left:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cFailed'
+          commands:
+            - 'msg: &aPage down'
+            - 'page: +1'
+        right:
+          requirement: '%placeholder% == 233 || %placeholder% != 0'
+          deny_commands:
+            - 'msg: &cFailed'
+          commands:
+            - 'msg: &aPage up'
+            - 'page: -1'
+  items:
+    - id: '%placeholder%'
+      amount: '%placeholder%'
+      slot: [1, 2, 3]
+      name: 'Item %placeholder%'
+      lore:
+        - '%placeholder%'
+    - id: '%placeholder%'
+      amount: '%placeholder%'
+      slot: [4, 5]
+      name: 'Item %placeholder%'
+      lore:
+        - '%placeholder%'
+
+
+# Normal setting
+item2:
+  id: '%placeholder%'
+  amount: '%placeholder%'
+  slot: [1, 2, 3]
+  name: 'Item %placeholder%'
+  commands:
+    left:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &cFailed'
+      commands:
+        - 'close'
+    right:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &cFailed'
+      commands:
+        - 'close'
+
+
+# Dynamic setting
+item3:
+  # The interval between two items
+  update_tick: 40
+  commands:
+    left:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &cFailed'
+      commands:
+        - 'close'
+    right:
+      requirement: '%placeholder% == 233 || %placeholder% != 0'
+      deny_commands:
+        - 'msg: &cFailed'
+      commands:
+        - 'close'
+  items:
+    - requirement: '%placeholder% == 233 || %placeholder% != 0'
+      id: '%placeholder%'
+      amount: '%placeholder%'
+      name: '&ePlayer'
+      group: 'menulist'
+      lore:
+        - 'abc'
+    - id: '%placeholder%'
+      amount: '%placeholder%'
+      name: '&ePage player'
+      group: 'menulist'
+      lore:
+        - 'def'

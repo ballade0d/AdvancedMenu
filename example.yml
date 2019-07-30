@@ -186,7 +186,7 @@ full:
 player:
   slot: [11, 12, 13, 14, 15]
   sorter:
-    # The plugin will sort the player according to this value.
+    # The plugin will sort players according to this value.
     value: '%player_money%'
     # down: Reverse order
     order: 'up'

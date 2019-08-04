@@ -1,2 +1,2 @@
 # AdvancedMenu
-1
+An advanced menu plugin.

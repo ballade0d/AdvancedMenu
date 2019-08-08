@@ -14,4 +14,4 @@
 
 ### plugin Wiki / 插件教程
 
-+ https://github.com/CraftG/AdvancedMenu/wiki
+https://github.com/CraftG/AdvancedMenu/wiki

@@ -11,3 +11,7 @@
 + 强大的 JS 优先级判断
 + 高版本物品材质还原ID读取
 + 自动重载配置文件
+
+### plugin Wiki / 插件教程
+
++ https://github.com/CraftG/AdvancedMenu/wiki

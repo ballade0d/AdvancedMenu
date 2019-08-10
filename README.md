@@ -1,17 +1,26 @@
 # AdvancedMenu
-一款高级菜单插件. / An advanced menu plugin.
 
+An advanced menu plugin.
 ---
-### introduce / 插件介绍
+### Features
++ 99% Multi-threading
++ Dynamic menu
++ Fully customizable
++ MySQL statement executor
++ JavaScript support
++ Auto reload
+### Wiki
+https://github.com/CraftG/AdvancedMenu/wiki
 
-+ 拥有强大的异步算法. / Has a powerful asynchronous algorithm.
-+ 完全自定义动态物品节点. / xxxxxx
-+ 自动排版,可翻页
+一款高级的菜单插件
+---
+### 特性
++ 99%多线程执行
++ 动态菜单
++ 完全自定义
 + 支持执行 SQL 语句
-+ 强大的 JS 优先级判断
-+ 高版本物品材质还原ID读取
-+ 自动重新加载配置文件
++ JavaScript支持
++ 自动重载配置文件
 
-### plugin Wiki / 插件教程
-
+### 插件教程
 https://github.com/CraftG/AdvancedMenu/wiki
